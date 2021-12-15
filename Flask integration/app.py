@@ -2,7 +2,6 @@ import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
 from extract import feat
-
 app = Flask(__name__)
 pred=pickle.load(open('XGClassifier.pkl','rb'))
 @app.route('/')
@@ -12,7 +11,6 @@ def home():
 def predict():
     text=request.form.values()
     website=feat(text)
-    #int_features = [int(x) for x in request.form.values()]
     final_features = [website]
     prediction = pred.predict(final_features)
     print(type(prediction[0]))
